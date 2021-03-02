@@ -1,0 +1,10 @@
+<h1>In import page</h1>
+
+<!-- practice start -->
+{% import 'macro.html' as macro %}
+{% if data%}
+{{macro.easy_row(data,"h3")}}
+{% else %}
+<h1> No data! </h1>
+{% endif %}
+<!-- practice end -->

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Document{% endblock title %}</title>
+    {% block styles %}
+    {% include "parts/_styles.html" %}
+    {% endblock styles %}
+    {% block scripts %}
+    {% include "parts/_scripts.html" %}
+    {% endblock scripts %}
+    {% endblock head %}
+</head>
+
+<body>
+    {% block body %}
+    {% include "parts/_navbar.html" %}
+    <div class="container">
+    {% block page_content %}
+    {% include "parts/_page_header.html" %}
+    {% endblock page_content %}
+    </div>
+    
+    {% endblock body %}
+</body>
+
+</html>

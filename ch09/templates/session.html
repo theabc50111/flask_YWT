@@ -1,0 +1,81 @@
+{% extends "parts/base.html" %}
+
+{% block title %}form{% endblock title %}
+
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='jquery/jquery-3.5.1.min.js') }}"></script>
+{{ moment.include_moment() }}
+{{ moment.locale('zh-tw') }}
+{% endblock scripts %}
+
+{% block page_content %}
+{{ super() }}
+<!-- practice start -->
+<form method="POST" action="{{request.full_path}}">
+<!-- practice end -->
+    <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" name="passwords" class="form-control" id="exampleInputPassword1">
+    </div>
+    <select class="form-select" name="select1" aria-label="Default select example">
+        <option selected>Open this select menu</option>
+        <option value="1">One</option>
+        <option value="2">Two</option>
+        <option value="3">Three</option>
+    </select>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="checkbox" value="checkbox1" id="flexCheckDefault">
+        <label class="form-check-label" for="flexCheckDefault">
+            checkbox1
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="checkbox" value="checkbox2" id="flexCheckChecked" checked>
+        <label class="form-check-label" for="flexCheckChecked">
+            checkbox2
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" name="radio1" value="value1" type="radio" name="flexRadioDefault"
+            id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Default radio
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" name="radio1" value="value2" type="radio" name="flexRadioDefault"
+            id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2">
+            Default checked radio
+        </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+        <tr>
+            <th colspan="2">The table header</th>
+        </tr>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in data %}
+        <tr>
+            <td scope="row">
+                {{ record[0] }}
+            </td>
+            <td scope="row">
+                {{ record[1] }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock page_content %}

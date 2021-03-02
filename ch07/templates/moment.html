@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}moment{% endblock title %}
+<!-- practice start -->
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='moment/moment.min.js') }}"></script>
+{% endblock scripts %}
+
+{% block page_content %}
+{{ super() }}
+<p>Date: {{momentjs(start_time).format('YYYY-MM-DD HH:mm:ss')}}</p>
+<p>From now: {{momentjs(start_time).fromNow()}}</p>
+{% endblock page_content %}
+<!-- pracitce end -->

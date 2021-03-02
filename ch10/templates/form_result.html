@@ -1,0 +1,44 @@
+{% extends "parts/base.html"%}
+{% block title %}req_obj{% endblock title %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='jquery/jquery-3.5.1.min.js') }}"></script>
+{{ moment.include_moment() }}
+{{ moment.locale('zh-tw') }}
+{% endblock scripts %}
+
+{% block page_content %}
+{{ super() }}
+
+{% if insert_sucess==True %}
+<div class="alert alert-success mb-3" role="alert">
+    Insert data successful
+</div>
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+        <tr>
+            <th colspan="2">The table header</th>
+        </tr>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in data %}
+        <tr>
+            <td scope="row">
+                {{ record[0] }}
+            </td>
+            <td scope="row">
+                {{ record[1] }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% elif insert_sucess==False %}
+<div class="alert alert-danger" role="alert">
+    Insert data falied
+</div>
+{% endif %}
+
+{% endblock page_content %}

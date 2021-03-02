@@ -1,0 +1,32 @@
+
+<!-- practice start -->
+<!-- 宣告一個巨集 -->
+{% macro easy_row(data, tag) -%}
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">The table header</th>
+        </tr>
+    </thead>    
+    <tbody>
+        {% for record in data %}
+        <tr>
+            <td>
+                <{{ tag }}>{{ record[0] }}</{{ tag }}>
+            </td>
+            <td>
+                <{{ tag }}>{{ record[1] }}</{{ tag }}>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{%- endmacro %}
+
+{% if data%}
+<!-- 呼叫巨集 -->
+{{easy_row(data,"h3")}}
+{% else %}
+<h1> No data! </h1>
+{% endif %}
+<!-- practice end -->
