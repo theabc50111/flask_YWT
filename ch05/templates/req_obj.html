@@ -1,0 +1,19 @@
+<table>
+    <thead>
+        <tr>
+            <th colspan="2">The table header</th>
+        </tr>
+    </thead>    
+    <tbody >
+        {% for record in data %}
+        <tr style="border: 1px solid black">
+            <td style="border: 1px solid black">
+                {{ record[0] }}
+            </td>
+            <td style="border: 1px solid black">
+                {{ record[1] }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
