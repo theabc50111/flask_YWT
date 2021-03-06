@@ -1,16 +1,12 @@
-# pracitce start
 from flask import Flask, render_template, request, redirect, url_for, session
-# practice end
-
 from flask_moment import Moment
-from datetime import datetime
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 moment = Moment(app)
 
-# pracitce start
+
 app.config['SECRET_KEY'] = 'hard to guess string'
-# practice end
 
 @app.route('/')
 def index():
@@ -23,6 +19,15 @@ def get_session():
     if request.method=="POST":
         session["form_data"]=request.form
         return redirect(url_for("get_session"))
+    
+    # pracitce start
+    if not session.get("li1"):
+        session["li1"]=[1,2,3]
+    else:
+        session["li1"].append(4)
+        # session.modified = True
+    # practice end
+    
     data = [["method:", request.method],
             ["base_url:", request.base_url],
             ["form data:", request.form],

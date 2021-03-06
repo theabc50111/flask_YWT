@@ -7,8 +7,6 @@ moment = Moment(app)
 
 
 app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
-
 
 @app.route('/')
 def index():
@@ -23,11 +21,7 @@ def get_session():
         return redirect(url_for("get_session"))
     
     # pracitce start
-    if not session.get("li1"):
-        session["li1"]=[1,2,3]
-    else:
-        session["li1"].append(4)
-        # session.modified = True
+
     # practice end
     
     data = [["method:", request.method],
