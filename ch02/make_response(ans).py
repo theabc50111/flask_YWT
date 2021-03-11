@@ -10,6 +10,7 @@ app = Flask(__name__)
 def index():
     response = make_response('<h1>Check the status code</h1>')
     response.status_code = 200
+    print(response.conten_length, len("<h1>Check the status code</h1>"))
     return response
 #----------practice end--------------
 
