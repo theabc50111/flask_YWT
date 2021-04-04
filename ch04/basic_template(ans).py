@@ -29,7 +29,7 @@ def user_if(name):
 @app.route('/for')
 def user_for():
     lines = ["line1","line2","line3"]
-    return render_template('for.html', lines=lines)
+    return render_template('for.html', Lines=lines)
 #----------practice end-------------- 
 
 
