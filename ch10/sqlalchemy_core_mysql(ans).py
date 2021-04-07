@@ -19,13 +19,39 @@ metadata = db.MetaData()
 
 # 取得 office 資料表的 Python 對應操作物件
 table_office = db.Table(table, metadata, autoload=True, autoload_with=engine)
-print(f"metadata: \n{metadata.sorted_tables}") 
+print(f"metadata: \n{metadata.sorted_tables}",end="\n"+("-"*80)+"\n") 
 
-# SELECT
+# SELECT fetchall
 query = db.select(table_office)
 proxy = connection.execute(query)
 results = proxy.fetchall()
-print(results)
+print(results,end="\n"+("-"*80)+"\n")
+
+# SELECT fetchone
+query = db.select(table_office)
+proxy = connection.execute(query)
+for _ in range(10):
+    results = proxy.fetchone()
+    print(results)
+print("-"*80)
+
+# SELECT Specific Columns
+query = db.select(table_office.c.officeCode)
+proxy = connection.execute(query)
+results = proxy.fetchall()
+print(results,end="\n"+("-"*80)+"\n")
+
+# SELECT where
+query = db.select(table_office).where(table_office.c.officeCode=="4")
+proxy = connection.execute(query)
+results = proxy.fetchall()
+print(results,end="\n"+("-"*80)+"\n")
+
+# SELECT limit & offset
+query = db.select(table_office).limit(2).offset(2)
+proxy = connection.execute(query)
+results = proxy.fetchall()
+print(results,end="\n"+("-"*80)+"\n")
 
 # INSERT
 query = db.insert(table_office, ["8", 'Taipei', '+886 02 6631 6666', 'No.390, Sec. 1, Fusing S. Rd., Da’an Dist.', 'Floor #2', None, 'ROC', '106470', 'ROC'])
@@ -46,13 +72,18 @@ for i,floor in enumerate(floors):
 from sqlalchemy import Integer
 query = db.delete(table_office).where(table_office.c.officeCode.cast(Integer) >15)
 proxy = connection.execute(query)
+
+# Close connection & engine
+connection.close()
+engine.dispose()
+
 #----------practice end--------------
 
-# -----------UPDATE seq and restore database--------------
+# -----------UPDATE addressLine2 and restore database--------------
 # query = db.update(table_office).where(table_office.c.officeCode == "5").values(addressLine2=None)
 # proxy = connection.execute(query)
 # from sqlalchemy import Integer
 # query = db.delete(table_office).where(table_office.c.officeCode.cast(Integer) >7)
 # proxy = connection.execute(query)
-# -----------UPDATE seq and restore database--------------
+# -----------UPDATE addressLine2 and restore database--------------
 

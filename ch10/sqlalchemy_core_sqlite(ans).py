@@ -16,11 +16,38 @@ metadata = db.MetaData()
 table_genres = db.Table(table, metadata, autoload=True, autoload_with=engine)
 print(f"metadata: \n{metadata.sorted_tables}") 
 
-# SELECT
+# SELECT fetchall
 query = db.select(table_genres)
 proxy = connection.execute(query)
-results_all = proxy.fetchall()
-print(results_all)
+results = proxy.fetchall()
+print(results,end="\n"+("-"*80)+"\n")
+
+# SELECT fetchone
+query = db.select(table_genres)
+proxy = connection.execute(query)
+for _ in range(30):
+    results = proxy.fetchone()
+    print(results)
+print("-"*80)
+
+# SELECT Specific Columns
+query = db.select(table_genres.c.Name)
+proxy = connection.execute(query)
+results = proxy.fetchall()
+print(results,end="\n"+("-"*80)+"\n")
+
+# SELECT where
+query = db.select(table_genres).where(table_genres.c.Name=="Latin")
+proxy = connection.execute(query)
+results = proxy.fetchall()
+print(results,end="\n"+("-"*80)+"\n")
+
+# SELECT limit & offset
+query = db.select(table_genres).limit(2).offset(2)
+proxy = connection.execute(query)
+results = proxy.fetchall()
+print(results,end="\n"+("-"*80)+"\n")
+
 
 # INSERT
 query = db.insert(table_genres).values(Name='Funk')
@@ -39,6 +66,12 @@ for value in ['Funk2','Funk3','Funk4','Funk5','Funk6']:
 # DELETE
 query = db.delete(table_genres).where(table_genres.c.GenreId > 28)
 proxy = connection.execute(query)
+
+
+# Close connection & engine
+connection.close()
+engine.dispose()
+
 #----------practice end--------------
 
 

@@ -28,7 +28,7 @@ def index():
 @app.route('/rec', methods=['GET', 'POST'])
 def get_file():
     if request.method == "GET":
-        return render_template('file.html', page_header="upload file")
+        return render_template('file.html', page_header="upload hand write picture")
     elif request.method == "POST":
         file = request.files['file']
         if file:
