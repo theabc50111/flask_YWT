@@ -1,0 +1,82 @@
+{% extends "parts/base.html" %}
+{% block title %}data-list{% endblock title %}
+
+
+{% block page_content %}
+{{ super() }}
+
+
+<div class="container mt-5">
+    <div class="row" id="msg-bar" style="display: none">
+        <div class="alert alert-primary" role="alert">
+            
+        </div>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="col-10">
+            <div class="card ">
+                <div class="card-body">
+                    <form method="POST" action="/data-edit">
+                        <div class="mb-3">
+                            <label for="CustomerId" class="form-label">CustomerId</label>
+                            <input type="text" name="CustomerId" class="form-control" id="CustomerId">
+                        </div>
+                        <div class="mb-3">
+                            <label for="FirstName" class="form-label">FirstName</label>
+                            <input type="text" name="FirstName" class="form-control" id="FirstName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="LastName" class="form-label">LastName</label>
+                            <input type="text" name="LastName" class="form-control" id="LastName">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Company" class="form-label">Company</label>
+                            <input type="text" name="Company" class="form-control" id="Company">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Address" class="form-label">Address</label>
+                            <textarea class="form-control" name="Address" id="Address" rows="3"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="City" class="form-label">City</label>
+                            <input type="text" name="City" class="form-control" id="City">
+                        </div>
+                        <div class="mb-3">
+                            <label for="State" class="form-label">State</label>
+                            <input type="text" name="State" class="form-control" id="State">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Country" class="form-label">Country</label>
+                            <input type="text" name="Country" class="form-control" id="Country">
+                        </div>
+                        <div class="mb-3">
+                            <label for="PostalCode" class="form-label">PostalCode</label>
+                            <input type="text" name="PostalCode" class="form-control" id="PostalCode">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Phone" class="form-label">Phone</label>
+                            <input type="text" name="Phone" class="form-control" id="Phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Fax" class="form-label">Fax</label>
+                            <input type="text" name="Fax" class="form-control" id="Fax">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Email</label>
+                            <input type="email" name="Email" class="form-control" id="Email"
+                                aria-describedby="emailHelp">
+                            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="SupportRepId" class="form-label">SupportRepId</label>
+                            <input type="text" name="SupportRepId" class="form-control" id="SupportRepId">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock page_content %}

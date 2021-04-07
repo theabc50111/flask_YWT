@@ -1,0 +1,54 @@
+{% extends "parts/base.html" %}
+{% block title %}data-list{% endblock title %}
+
+
+{% block page_content %}
+{{ super() }}
+<table class="table table-light table-striped table-hover mt-5">
+    <thead>
+      <tr>
+        <th scope="col">CustomerId</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Company</th>
+        <th scope="col">Address</th>
+        <th scope="col">City</th>
+        <th scope="col">State</th>
+        <th scope="col">Country</th>
+        <th scope="col">PostalCode</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Fax</th>
+        <th scope="col">Email</th>
+        <th scope="col">SupportRepId</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for col in outputs %}
+        <tr>
+            <th scope="row">{{ col['CustomerId'] }}</th>
+            <td>{{ col['FirstName'] }}</td>
+            <td>{{ col['LastName'] }}</td>
+            <td>{{ col['Company'] }}</td>
+            <td>{{ col['Address'] }}</td>
+            <td>{{ col['City'] }}</td>
+            <td>{{ col['State'] }}</td>
+            <td>{{ col['Country'] }}</td>
+            <td>{{ col['PostalCode'] }}</td>
+            <td>{{ col['Phone'] }}</td>
+            <td>{{ col['Fax'] }}</td>
+            <td>{{ col['Email'] }}</td>
+            <td>{{ col['SupportRepId'] }}</td>
+          </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+
+<ul class="pagination  justify-content-center mt-5">
+    <!-- use querystring to control -->
+    <li class="page-item"><a class="page-link" href="/data-list?page={{ page-1 }}">Previous</a></li>
+    {% for p in range(1,total_pages+1 ) %}
+    <li class="page-item {{'active' if p==page else ''}}"><a class="page-link" href="/data-list?page={{p}}">{{ p }}</a></li>
+    {% endfor %}
+    <li class="page-item"><a class="page-link" href="/data-list?page={{ page+1 }}">Next</a></li>
+</ul>
+{% endblock page_content %}

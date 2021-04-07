@@ -1,0 +1,24 @@
+{% extends "parts/base.html"%}
+{% block title %}req_obj{% endblock title %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='jquery/jquery-3.5.1.min.js') }}"></script>
+{{ moment.include_moment() }}
+{{ moment.locale('zh-tw') }}
+{% endblock scripts %}
+
+{% block page_content %}
+{{ super() }}
+
+
+<!-- practice start -->
+<img src="{{ src }}" class="rounded mx-auto d-block" alt="...">
+
+<div class="row">
+    <div class="alert alert-primary col-6 mx-auto" role="alert">
+        <h1 class="col-6 mx-auto display-4 text-center">{{ predict }}</h1>
+    </div>
+</div>
+<!-- practice end -->
+
+{% endblock page_content %}
