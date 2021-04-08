@@ -11,7 +11,7 @@ app = Flask(__name__)
 moment = Moment(app)
 
 # practice start
-UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))+'/uploaded'
+UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + r'\uploaded'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 # practice end
@@ -31,12 +31,12 @@ def get_file():
     elif request.method == "POST":
         file = request.files['file'] # key is the value of name(html attribute) in <input type="file">
         if file:
-            filename = str(uuid.uuid5(uuid.NAMESPACE_OID, file.filename))+"_"+file.filename
+            filename = str(uuid.uuid4())+"_"+file.filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
         data = [["method:", request.method],
                 ["base_url:", request.base_url],
                 ["file:",request.files]]
-        return render_template('req_obj.html', page_header="review file", data=data)
+        return render_template('form_result.html', page_header="review file", data=data)
 # practice end
 
 

@@ -15,9 +15,9 @@
     {{ form.name.label }} {{ form.name() }}
     {{ form.password.label }} {{ form.password() }}
     {{form.gender.label}}
-    {% for subfield in form.gender %}
-    {{ subfield(class="btn-check") }}
-    {{ subfield.label(class="btn btn-outline-success") }}
+    {% for gender_selection in form.gender %}
+    {{ gender_selection(class="btn-check") }}
+    {{ gender_selection.label(class="btn btn-outline-success") }}
     {% endfor %}
     {{ form.submit(id="sub1",class="btn btn-primary") }}
 </form>
