@@ -1,4 +1,4 @@
-# pracitce start
+# practice start
 
 # practice end
 
@@ -8,7 +8,7 @@ from datetime import datetime
 app = Flask(__name__)
 moment = Moment(app)
 
-# pracitce start
+# practice start
 
 # practice end
 
@@ -18,7 +18,7 @@ def index():
                            page_header="page_header",
                            current_time=datetime.utcnow())
 
-# pracitce start
+# practice start
 
 # practice end
  

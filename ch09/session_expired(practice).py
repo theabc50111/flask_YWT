@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-# pracitce start
+# practice start
 
 # practice end
 
@@ -11,7 +11,7 @@ moment = Moment(app)
 
 app.config['SECRET_KEY'] = 'hard to guess string'
 
-# pracitce start
+# practice start
 
 # practice end
 
