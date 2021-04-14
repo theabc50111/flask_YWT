@@ -55,17 +55,28 @@ def data_list():
 def data_edit():
 
     if request.method=="POST":
-        connection  = engine.connect() # connection 要放在view function中，否則會出現thread error
-        query = db.update(table_customers).where(table_customers.c.CustomerId == request.form['CustomerId']).values(**{k:request.form[k] for k in request.form.keys()})
-        proxy = connection.execute(query)
-        # Close connection
-        connection.close()
+        try:
+            connection  = engine.connect() # connection 要放在view function中，否則會出現thread error
+            query = db.select(table_customers.c.CustomerId).order_by(table_customers.c.CustomerId)
+            proxy = connection.execute(query)
+            id_list = [idx[0] for idx in proxy.fetchall()]
+            query = db.update(table_customers).where(table_customers.c.CustomerId == request.form['CustomerId']).values(**{k:request.form[k] for k in request.form.keys()})
+            proxy = connection.execute(query)
+        except:
+            return render_template('data_edit.html',
+                                    page_header="edit data",id_list=id_list,status="Failed")
+        else:
+            return render_template('data_edit.html',
+                                    page_header="edit data",id_list=id_list,status="Success")
+        finally:
+            # Close connection
+            connection.close()
+           
     if request.method=="GET":
         connection  = engine.connect() # connection 要放在view function中，否則會出現thread error
         query = db.select(table_customers.c.CustomerId).order_by(table_customers.c.CustomerId)
         proxy = connection.execute(query)
         id_list = [idx[0] for idx in proxy.fetchall()]
-        print(type(id_list))
         return render_template('data_edit.html',
                                 page_header="edit data",id_list=id_list)
 

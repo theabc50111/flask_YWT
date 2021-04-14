@@ -7,9 +7,9 @@
 
 
 <div class="container mt-5">
-    <div class="row" id="msg-bar" style="display: none">
-        <div class="alert alert-primary" role="alert">
-            
+    <div class="row" id="msg-bar" style="display: {{ 'none' if request.method=='GET' else 'block' }}">
+        <div class="alert {{ 'alert-primary' if status=='Success' else 'alert-danger'}} " role="alert">
+            {{ status }}
         </div>
     </div>
     <div class="row justify-content-md-center">
@@ -17,10 +17,6 @@
             <div class="card ">
                 <div class="card-body">
                     <form method="POST" action="/data-edit">
-                        <!-- <div class="mb-3">
-                            <label for="CustomerId" class="form-label">CustomerId</label>
-                            <input type="text" name="CustomerId" class="form-control" id="CustomerId">
-                        </div> -->
                         <div class="mb-3">
                             <label for="CustomerId" class="form-label">CustomerId</label>
                             <select class="form-select" name="CustomerId"  id="CustomerId" aria-label="Default select example">
