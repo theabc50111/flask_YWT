@@ -32,7 +32,7 @@ def get_file():
     elif request.method == "POST":
         file = request.files['file']
         if file:
-            filename = str(uuid.uuid5(uuid.NAMESPACE_OID, file.filename))+"_"+file.filename
+            filename = str(uuid.uuid4())+"_"+file.filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             predict = model.recog_digit(filename)
         return render_template('recog_result.html', page_header="hand writing digit recognition", predict = predict, src = url_for('static', filename=f'uploaded/{filename}'))
