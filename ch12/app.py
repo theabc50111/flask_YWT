@@ -12,7 +12,7 @@ app = Flask(__name__)
 moment = Moment(app)
 
 # practice start
-UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))+r'\uploaded'
+UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))+r'\static\uploaded'
 # practice end
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -35,7 +35,7 @@ def get_file():
             filename = str(uuid.uuid5(uuid.NAMESPACE_OID, file.filename))+"_"+file.filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
             predict = model.recog_digit(filename)
-        return render_template('recog_result.html', page_header="hand writing digit recognition", predict = predict, src = url_for('static', filename=f'img/uploaded/{filename}'))
+        return render_template('recog_result.html', page_header="hand writing digit recognition", predict = predict, src = url_for('static', filename=f'uploaded/{filename}'))
 # practice end
 
 
