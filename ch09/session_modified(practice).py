@@ -20,7 +20,7 @@ def get_session():
         session["form_data"]=request.form
         return redirect(url_for("get_session"))
     
-    # pracitce start
+    # practice start
 
     # practice end
     

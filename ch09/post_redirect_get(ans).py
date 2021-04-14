@@ -1,4 +1,4 @@
-# pracitce start
+# practice start
 from flask import Flask, render_template, request, redirect, url_for
 # practice end
 

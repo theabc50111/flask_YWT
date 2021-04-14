@@ -20,7 +20,7 @@ def get_session():
         session["form_data"]=request.form
         return redirect(url_for("get_session"))
     
-    # pracitce start
+    # practice start
     if not session.get("li1"):
         session["li1"]=[1,2,3]
     else:
