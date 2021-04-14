@@ -17,9 +17,17 @@
             <div class="card ">
                 <div class="card-body">
                     <form method="POST" action="/data-edit">
-                        <div class="mb-3">
+                        <!-- <div class="mb-3">
                             <label for="CustomerId" class="form-label">CustomerId</label>
                             <input type="text" name="CustomerId" class="form-control" id="CustomerId">
+                        </div> -->
+                        <div class="mb-3">
+                            <label for="CustomerId" class="form-label">CustomerId</label>
+                            <select class="form-select" name="CustomerId"  id="CustomerId" aria-label="Default select example">
+                                {% for id in id_list %}
+                                <option value="{{ id }}">{{ id }}</option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="FirstName" class="form-label">FirstName</label>
