@@ -1,0 +1,15 @@
+{% extends "parts/base.html" %}
+
+{% block title %}index{% endblock title %}
+{% block scripts %}
+{{ super() }}
+<script src="{{ url_for('static', filename='jquery/jquery-3.5.1.min.js') }}"></script>
+{{ moment.include_moment() }}
+{{ moment.locale('zh-tw') }}
+{% endblock scripts %}
+
+{% block page_content %}
+{{ super() }}
+    <p>The local date and time is {{ moment(current_time).format('LLL') }}.</p>
+    <p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+{% endblock page_content %}
