@@ -45,10 +45,7 @@
 
 <ul class="pagination  justify-content-center mt-5">
     <!-- use querystring to control -->
-    <li class="page-item"><a class="page-link" href="/data-list?page={{ page-1 }}">Previous</a></li>
-    {% for p in range(1,total_pages+1 ) %}
-    <li class="page-item {{'active' if p==page else ''}}"><a class="page-link" href="/data-list?page={{p}}">{{ p }}</a></li>
-    {% endfor %}
-    <li class="page-item"><a class="page-link" href="/data-list?page={{ page+1 }}">Next</a></li>
+    <!-- practice start -->
+    <!-- practice end -->
 </ul>
 {% endblock page_content %}
