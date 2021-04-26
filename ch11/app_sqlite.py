@@ -53,15 +53,17 @@ def data_list():
 
 @app.route('/data-edit', methods=["GET", "POST"])
 def data_edit():
-
     if request.method=="POST":
         try:
             connection  = engine.connect() # connection 要放在view function中，否則會出現thread error
             query = db.select(table_customers.c.CustomerId).order_by(table_customers.c.CustomerId)
             proxy = connection.execute(query)
             id_list = [idx[0] for idx in proxy.fetchall()]
-            query = db.update(table_customers).where(table_customers.c.CustomerId == request.form['CustomerId']).values(**{k:request.form[k] for k in request.form.keys()})
-            proxy = connection.execute(query)
+            if request.form['FirstName']: # 希望至少要填寫名子
+                query = db.update(table_customers).where(table_customers.c.CustomerId == request.form['CustomerId']).values(**{k:request.form[k] for k in request.form.keys()})
+                proxy = connection.execute(query)
+            else:
+                raise Exception
         except:
             return render_template('data_edit.html',
                                     page_header="edit data",id_list=id_list,status="Failed")
