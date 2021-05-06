@@ -11,12 +11,13 @@ def index():
 #----------practice start------------
 @app.route('/user/<name>')
 def user(name):
-    return render_template('delimiters.html', name=name)
+    return render_template('delimiters.html',name_jinja=name)
 
 @app.route("/filter/<var>")
 def test_filter(var):
     safe_var = "<h3>456</h3>"
-    return render_template("filter.html", var=var, safe_var=safe_var)
+    return render_template("filter.html", var_jinja=var, safe_var_jinja=safe_var)
+
 
 @app.route('/if/<name>')
 def user_if(name):
@@ -24,7 +25,7 @@ def user_if(name):
         user=name
     else:
         user=None
-    return render_template('if.html', user=user)
+    return render_template('if.html', user_jinja=user)
 
 @app.route('/for')
 def user_for():

@@ -11,7 +11,7 @@ def index():
 @app.route('/import')
 def import_page():
     data = [["title1","item1"],["title2","item2"],["title3","item3"]]
-    return render_template("import.html",data=data)
+    return render_template("import.html",data_jinja=data)
 #----------practice end--------------
 
 if __name__=="__main__":

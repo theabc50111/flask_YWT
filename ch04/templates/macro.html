@@ -1,7 +1,7 @@
 
 <!-- practice start -->
 <!-- 宣告一個巨集 -->
-{% macro easy_row(data, tag) -%}
+{% macro easy_row(arg_data, arg_tag) -%}
 <table>
     <thead>
         <tr>
@@ -9,13 +9,13 @@
         </tr>
     </thead>    
     <tbody>
-        {% for record in data %}
+        {% for record in arg_data %}
         <tr>
             <td>
-                <{{ tag }}>{{ record[0] }}</{{ tag }}>
+                <{{ arg_tag }}>{{ record[0] }}</{{ arg_tag }}>
             </td>
             <td>
-                <{{ tag }}>{{ record[1] }}</{{ tag }}>
+                <{{ arg_tag }}>{{ record[1] }}</{{ arg_tag }}>
             </td>
         </tr>
         {% endfor %}
@@ -25,7 +25,7 @@
 
 {% if data%}
 <!-- 呼叫巨集 -->
-{{easy_row(data,"h3")}}
+{{easy_row(data_jinja,"h3")}}
 {% else %}
 <h1> No data! </h1>
 {% endif %}
