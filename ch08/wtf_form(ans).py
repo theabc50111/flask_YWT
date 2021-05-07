@@ -5,7 +5,7 @@ from datetime import datetime
 # practice start
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, RadioField
-from wtforms.validators import DataRequired, InputRequired
+from wtforms.validators import DataRequired
 # practice end
 
 app = Flask(__name__)
@@ -30,14 +30,9 @@ def index():
 # practice start
 @app.route('/wtf_form', methods=['GET', 'POST'])
 def wtf_form():
-    name = None
     form = NameForm()
     if request.method == "GET":
-        if form.validate_on_submit():
-            name = form.name.data
-            form.name.data = ''
-        return render_template('wtf_form.html',
-                               page_header="wtFrom", form=form, name=name)
+        return render_template('wtf_form.html', page_header="wtFrom", form=form)
     else:
         data = [["method:", request.method],
                 ["base_url:", request.base_url],

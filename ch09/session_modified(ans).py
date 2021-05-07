@@ -25,7 +25,7 @@ def get_session():
         session["li1"]=[1,2,3]
     else:
         session["li1"].append(4)
-        # session.modified = True
+        # session.modified = True # in order to  edit content of session
     # practice end
     
     data = [["method:", request.method],

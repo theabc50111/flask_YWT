@@ -12,7 +12,7 @@ start_time = datetime(2018, 1, 31, 0, 0, 0)
 
 @app.route('/')
 def index():
-    return render_template('moment.html',
+    return render_template('flask_moment.html',
                            page_header="page_header",
                            current_time=datetime.utcnow(),
                            start_time=start_time)
