@@ -10,8 +10,10 @@ def index():
 # ----------practice start------------
 @app.route('/user/<name>/<path:id_>')
 def user_check_type(name, id_):
-    return (f'<h1>id: {escape(id_)}!</h1>'
-            f'<h1>name: {escape(type(name))}!</h1>')
+    return (f'<h1>id: {id_}!</h1>'
+            f'<h1>name: {name}!</h1>'
+            f'<h1>id type: {escape(id_)}!</h1>'
+            f'<h1>name type: {escape(type(name))}!</h1>')
 # ----------practice end--------------
 
 if __name__ == '__main__':
