@@ -8,11 +8,11 @@ def index():
     return '<h1>Hello World!</h1>'
 
 # ----------practice start------------
-@app.route('/user/<name>/<path:id_>')
+@app.route('/user/<name>/<int:id_>')
 def user_check_type(name, id_):
     return (f'<h1>id: {id_}!</h1>'
             f'<h1>name: {name}!</h1>'
-            f'<h1>id type: {escape(id_)}!</h1>'
+            f'<h1>id type: {escape(type(id_))}!</h1>'
             f'<h1>name type: {escape(type(name))}!</h1>')
 # ----------practice end--------------
 

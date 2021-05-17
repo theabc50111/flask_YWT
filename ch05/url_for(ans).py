@@ -15,6 +15,7 @@ def user(name):
 #----------practice start------------
 @app.route('/url_for')
 def test_urlfor():
+    print(app.url_map)
     return render_template('url_for.html')
 #----------practice end-------------- 
 
