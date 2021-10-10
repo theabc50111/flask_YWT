@@ -79,6 +79,7 @@ def data_edit():
         query = db.select(table_customers.c.CustomerId).order_by(table_customers.c.CustomerId)
         proxy = connection.execute(query)
         id_list = [idx[0] for idx in proxy.fetchall()]
+        connection.close()
         return render_template('data_edit.html',
                                 page_header="edit data",id_list=id_list)
 
