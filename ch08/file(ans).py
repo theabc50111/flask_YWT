@@ -4,6 +4,7 @@ from datetime import datetime
 
 # practice start
 import os
+from pathlib import Path
 import uuid
 # practice end
 
@@ -11,7 +12,7 @@ app = Flask(__name__)
 moment = Moment(app)
 
 # practice start
-UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__)) + r'\uploaded'
+UPLOAD_FOLDER = Path(os.getcwd())/'uploaded'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 # practice end
