@@ -1,7 +1,6 @@
 #----------practice start------------
 from flask import Flask, make_response
 #----------practice end--------------
-import os
 
 app = Flask(__name__)
 
