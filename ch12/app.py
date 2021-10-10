@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, url_for
 from flask_moment import Moment
 from datetime import datetime
-import os
+from pathlib import Path
 import uuid
 
 # practice start
@@ -12,7 +12,7 @@ app = Flask(__name__)
 moment = Moment(app)
 
 # practice start
-UPLOAD_FOLDER = os.path.dirname(os.path.abspath(__file__))+r'\static\uploaded'
+UPLOAD_FOLDER = Path(__file__).resolve().parent/'static/uploaded'
 # practice end
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -33,7 +33,7 @@ def get_file():
         file = request.files['file']
         if file:
             filename = str(uuid.uuid4())+"_"+file.filename
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            file.save(app.config['UPLOAD_FOLDER']/filename)
             predict = model.recog_digit(filename)
         return render_template('recog_result.html', page_header="hand writing digit recognition", predict = predict, src = url_for('static', filename=f'uploaded/{filename}'))
 # practice end

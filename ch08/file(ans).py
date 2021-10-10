@@ -3,7 +3,6 @@ from flask_moment import Moment
 from datetime import datetime
 
 # practice start
-import os
 from pathlib import Path
 import uuid
 # practice end
@@ -12,7 +11,7 @@ app = Flask(__name__)
 moment = Moment(app)
 
 # practice start
-UPLOAD_FOLDER = Path(os.getcwd())/'uploaded'
+UPLOAD_FOLDER = Path(__file__).resolve().parent/'uploaded'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB
 # practice end
@@ -33,7 +32,7 @@ def get_file():
         file = request.files['file'] # key is the value of name(html attribute) in <input type="file">
         if file:
             filename = str(uuid.uuid4())+"_"+file.filename
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'],filename))
+            file.save(UPLOAD_FOLDER/filename)
         data = [["method:", request.method],
                 ["base_url:", request.base_url],
                 ["file:",request.files]]
