@@ -10,7 +10,7 @@ def index():
 @app.route('/macro')
 def macro():
     data = [["title1","item1"],["title2","item2"],["title3","item3"]]
-    return render_template("macro.html",data_jinja=data)
+    return render_template("macro.html", data_jinja=data)
 #----------practice end--------------
 
 
