@@ -12,7 +12,7 @@ def index():
 #----------practice start------------
 @app.route('/redirect')
 def red():
-    return redirect('http://www.google.com')
+    return redirect('http://www.example.com')
 #----------practice end--------------
 
 if __name__ == '__main__':
