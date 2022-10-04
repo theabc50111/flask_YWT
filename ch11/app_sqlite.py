@@ -60,7 +60,7 @@ def data_edit():
             proxy = connection.execute(query)
             id_list = [idx[0] for idx in proxy.fetchall()]
             if request.form['FirstName']: # 希望至少要填寫名子
-                query = db.update(table_customers).where(table_customers.c.CustomerId == request.form['CustomerId']).values(**{k:request.form[k] for k in request.form.keys()})
+                query = db.update(table_customers).where(table_customers.c.CustomerId == request.form['CustomerId']).values(**request.form)
                 proxy = connection.execute(query)
             else:
                 raise Exception
