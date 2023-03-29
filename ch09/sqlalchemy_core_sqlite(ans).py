@@ -14,7 +14,7 @@ metadata = db.MetaData()
 print(f"metadata: \n{metadata.sorted_tables}")
 
 # 取得 genres 資料表的 Python 對應操作物件
-table_genres = db.Table(table, metadata, autoload=True, autoload_with=engine)
+table_genres = db.Table(table, metadata, autoload_with=engine)
 print(f"metadata: \n{metadata.sorted_tables}",end="\n"+("-"*80)+"\n")  # 比較Table建立前後的metadata 
 
 # SELECT fetchall
@@ -52,21 +52,26 @@ print(results,end="\n"+("-"*80)+"\n")
 
 # INSERT
 query = db.insert(table_genres).values(Name='Funk')
-proxy = connection.execute(query)
+connection.execute(query)
+connection.commit()
 
 # UPDATE
 query = db.update(table_genres).where(table_genres.c.GenreId == 9).values(Name='K-pop')
-proxy = connection.execute(query)
+connection.execute(query)
+connection.commit()
 
 # INSERT
 for value in ['Funk2','Funk3','Funk4','Funk5','Funk6']:
     query = db.insert(table_genres).values(Name=value)
-    proxy = connection.execute(query)
+    connection.execute(query)
+    connection.commit()
+
 
 
 # DELETE
 query = db.delete(table_genres).where(table_genres.c.GenreId > 28)
-proxy = connection.execute(query)
+connection.execute(query)
+connection.commit()
 
 
 # Close connection & engine
