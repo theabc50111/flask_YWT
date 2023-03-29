@@ -12,12 +12,12 @@
 {% block page_content %}
 {{ super() }}
 <!-- practice start -->
-<form method="POST" action="/file" enctype="multipart/form-data">
+<form method="POST" action="/rec" enctype="multipart/form-data">
     <div>
         <label for="formFileLg" class="form-label">Large file input example</label>
         <input class="form-control form-control-lg" id="formFileLg" type="file" name="file" >
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<!-- practiice end -->
+<!-- practice end -->
 {% endblock page_content %}
