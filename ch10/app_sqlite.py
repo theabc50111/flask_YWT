@@ -14,7 +14,7 @@ path_to_db = "./db/chinook.db"
 table = 'customers'
 engine = db.create_engine(f'sqlite:///{path_to_db}')
 metadata = db.MetaData()
-table_customers = db.Table(table, metadata, autoload=True, autoload_with=engine)
+table_customers = db.Table(table, metadata, autoload_with=engine)
 
 @app.route('/')
 def index():
@@ -40,7 +40,7 @@ def data_list():
     query = db.select(table_customers).limit(each_page).offset((page-1)*each_page)
     proxy = connection.execute(query)
     results = proxy.fetchall()
-    print(results[1].keys())
+    print(table_customers.columns.keys())
 
     # Close connection
     connection.close()
@@ -61,7 +61,8 @@ def data_edit():
             id_list = [idx[0] for idx in proxy.fetchall()]
             if request.form['FirstName']: # 希望至少要填寫名子
                 query = db.update(table_customers).where(table_customers.c.CustomerId == request.form['CustomerId']).values(**request.form)
-                proxy = connection.execute(query)
+                connection.execute(query)
+                connection.commit()
             else:
                 raise Exception
         except:
