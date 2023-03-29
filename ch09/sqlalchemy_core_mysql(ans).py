@@ -54,23 +54,23 @@ proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
 
-# # INSERT
-# query = db.insert(table_office).values(["8", 'Taipei', '+886 02 6631 6666', 'No.390, Sec. 1, Fusing S. Rd., Da’an Dist.', 'Floor #2', None, 'ROC', '106470', 'ROC'])
-# connection.execute(query)
-# connection.commit()
+# INSERT
+query = db.insert(table_office).values(["8", 'Taipei', '+886 02 6631 6666', 'No.390, Sec. 1, Fusing S. Rd., Da’an Dist.', 'Floor #2', None, 'ROC', '106470', 'ROC'])
+connection.execute(query)
+connection.commit()
 
 # UPDATE
 query = db.update(table_office).where(table_office.c.officeCode == '5').values(addressLine2='Floor #6')
 connection.execute(query)
 connection.commit()
 
-# # INSERT
-# floors = ['Floor #3', 'Floor #4', 'Floor #5', 'Floor #6', 'Floor #7', 'Floor #8', 'Floor #9', 'Floor #10', 'Floor #11', 'Floor #12', 'Floor #13']
-# for i,floor in enumerate(floors):
-#     query = db.insert(table_office).values([str(i+9), 'Taipei', '+886 02 6631 6666', 'No.390, Sec. 1, Fusing S. Rd., Da’an Dist.', floor, None, 
-#                                     'ROC', '106470', 'ROC'])
-#     connection.execute(query)
-#     connection.commit()
+# INSERT
+floors = ['Floor #3', 'Floor #4', 'Floor #5', 'Floor #6', 'Floor #7', 'Floor #8', 'Floor #9', 'Floor #10', 'Floor #11', 'Floor #12', 'Floor #13']
+for i,floor in enumerate(floors):
+    query = db.insert(table_office).values([str(i+9), 'Taipei', '+886 02 6631 6666', 'No.390, Sec. 1, Fusing S. Rd., Da’an Dist.', floor, None, 
+                                    'ROC', '106470', 'ROC'])
+    connection.execute(query)
+    connection.commit()
 
 # DELETE
 from sqlalchemy import Integer
