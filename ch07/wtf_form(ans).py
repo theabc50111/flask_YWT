@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-from flask_moment import Moment
 from datetime import datetime
 
 # practice start
@@ -9,7 +8,6 @@ from wtforms.validators import DataRequired
 # practice end
 
 app = Flask(__name__)
-moment = Moment(app)
 
 # practice start
 app.config['SECRET_KEY'] = 'hard to guess string'
@@ -24,8 +22,8 @@ class NameForm(FlaskForm):
 @app.route('/')
 def index():
     return render_template('index.html',
-                           page_header="page_header",
-                           current_time=datetime.utcnow())
+                           page_header="page_header")
+
 
 # practice start
 @app.route('/wtf_form', methods=['GET', 'POST'])
