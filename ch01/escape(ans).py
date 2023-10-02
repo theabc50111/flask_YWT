@@ -1,5 +1,6 @@
 # ----------practice start------------
-from flask import Flask, escape
+from flask import Flask
+from markupsafe import escape
 # ----------practice end--------------
 
 app = Flask(__name__)
