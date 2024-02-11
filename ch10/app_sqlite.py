@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_moment import Moment
 from datetime import datetime
 import sqlalchemy as db
 from sqlalchemy import func
@@ -7,7 +6,6 @@ import math
 
 
 app = Flask(__name__)
-moment = Moment(app)
 
 # sql setting
 path_to_db = "./db/chinook.db"
@@ -85,4 +83,4 @@ def data_edit():
                                 page_header="edit data",id_list=id_list)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0")
