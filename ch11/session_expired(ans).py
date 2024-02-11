@@ -3,11 +3,9 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from datetime import datetime, timedelta
 # practice end
 
-from flask_moment import Moment
 
 
 app = Flask(__name__)
-moment = Moment(app)
 
 app.config['SECRET_KEY'] = 'hard to guess string'
 

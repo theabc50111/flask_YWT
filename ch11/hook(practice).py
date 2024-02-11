@@ -1,10 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_moment import Moment
 from datetime import datetime, timedelta
 
 app = Flask(__name__)
-moment = Moment(app)
-
 
 app.config['SECRET_KEY'] = 'hard to guess string'
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=1)
