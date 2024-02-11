@@ -2,10 +2,6 @@
 
 {% block title %}file{% endblock title %}
 
-{% block scripts %}
-{{ super() }}
-<script src="{{ url_for('static', filename='jquery/jquery-3.5.1.min.js') }}"></script>
-{% endblock scripts %}
 
 {% block page_content %}
 {{ super() }}
