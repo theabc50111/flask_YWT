@@ -23,13 +23,13 @@ table_office = db.Table(table, metadata, autoload_with=engine)
 print(f"metadata: \n{metadata.sorted_tables}",end="\n"+("-"*80)+"\n")  # 比較Table建立前後的metadata 
 
 # SELECT fetchall
-query = db.select(table_office)
+query = db.select(table_office).select_from(table_office)
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
 
 # SELECT fetchone
-query = db.select(table_office)
+query = db.select(table_office).select_from(table_office)
 proxy = connection.execute(query)
 for _ in range(10):
     results = proxy.fetchone()
@@ -37,19 +37,19 @@ for _ in range(10):
 print("-"*80)
 
 # SELECT Specific Columns
-query = db.select(table_office.c.officeCode)
+query = db.select(table_office.c.officeCode).select_from(table_office)
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
 
 # SELECT where
-query = db.select(table_office).where(table_office.c.officeCode=="4")
+query = db.select(table_office).select_from(table_office).where(table_office.c.officeCode=="4")
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
 
 # SELECT limit & offset
-query = db.select(table_office).limit(2).offset(2)
+query = db.select(table_office).select_from(table_office).limit(2).offset(2)
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")

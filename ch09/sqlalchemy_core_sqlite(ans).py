@@ -18,13 +18,13 @@ table_genres = db.Table(table, metadata, autoload_with=engine)
 print(f"metadata: \n{metadata.sorted_tables}",end="\n"+("-"*80)+"\n")  # 比較Table建立前後的metadata 
 
 # SELECT fetchall
-query = db.select(table_genres)
+query = db.select(table_genres).select_from(table_genres)
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
 
 # SELECT fetchone
-query = db.select(table_genres)
+query = db.select(table_genres).select_from(table_genres)
 proxy = connection.execute(query)
 for _ in range(30):
     results = proxy.fetchone()
@@ -32,19 +32,19 @@ for _ in range(30):
 print("-"*80)
 
 # SELECT Specific Columns
-query = db.select(table_genres.c.Name)
+query = db.select(table_genres.c.Name).select_from(table_genres)
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
 
 # SELECT where
-query = db.select(table_genres).where(table_genres.c.Name=="Latin")
+query = db.select(table_genres).select_from(table_genres).where(table_genres.c.Name=="Latin")
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
 
 # SELECT limit & offset
-query = db.select(table_genres).limit(2).offset(2)
+query = db.select(table_genres).select_from(table_genres).limit(2).offset(2)
 proxy = connection.execute(query)
 results = proxy.fetchall()
 print(results,end="\n"+("-"*80)+"\n")
